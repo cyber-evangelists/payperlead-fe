@@ -1,17 +1,20 @@
 import Head from "next/head";
-import { Inter } from "next/font/google";
-import LandingPage from "./Components/LandingPage";
+import SideBar from "@/components/common/SideBar";
+import Hero from "@/components/home/Hero";
 
-const inter = Inter({ subsets: ["latin"] });
+import { Box } from "@chakra-ui/react";
 
 export default function Home() {
   return (
-    <div style={{fontFamily:'Inter'}} >
+    <>
       <Head>
         <title>Better Boiler</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <LandingPage/>
-    </div>
+      <Box bgColor={'#05294B'} h={'100vh'} display={'flex'} flexDirection={'row'}>
+        <SideBar />
+        <Hero />
+      </Box>
+    </>
   );
 }
