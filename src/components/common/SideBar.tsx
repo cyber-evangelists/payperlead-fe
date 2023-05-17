@@ -6,6 +6,7 @@ import home from '/public/assets/images/sideBar/home.png'
 import history from '/public/assets/images/sideBar/history.png'
 import profile from '/public/assets/images/sideBar/profile.png'
 import help from '/public/assets/images/sideBar/help.png'
+import add from '/public/assets/images/sideBar/add.png'
 
 export default function SideBar() {
   return (
@@ -15,7 +16,9 @@ export default function SideBar() {
 
         <Box mt={12} display={'flex'} flexDirection={'column'}>
           <Link href={'/'}>
-            <Box borderRadius={'12px'} display={'flex'} flexDirection={'row'} gap={3} cursor={'pointer'} py={3}>
+            <Box borderRadius={'12px'} display={'flex'} flexDirection={'row'} gap={3} cursor={'pointer'} py={3}
+            //  _hover={{bgColor:'white', opacity:'0.1', borderRadius:'12px'}}
+            >
               <Image src={home} alt="home" />
               <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} color={'#FFFFFF'}>Home</Text>
             </Box>
@@ -38,6 +41,12 @@ export default function SideBar() {
               <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} color={'#FFFFFF'}>Help</Text>
             </Box>
           </Link>
+          <Box borderRadius={'12px'} display={'flex'} flexDirection={'row'} gap={3} cursor={'pointer'} py={3} display={'flex'} flexDirection={'row'} alignItems={'center'} gap={2} mt={2}>
+            <Box>
+              <Image src={add} alt="help" />
+            </Box>
+            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'150%'} color={'#FFFFFF'}>Submit a new request</Text>
+          </Box>
         </Box>
 
       </Box>

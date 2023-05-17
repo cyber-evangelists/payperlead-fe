@@ -1,6 +1,7 @@
-import { Box, Text, Divider, Modal, ModalOverlay, ModalContent, ModalBody } from "@chakra-ui/react"
+import { Box, Text, Divider, Modal, ModalOverlay, ModalContent, ModalBody, useMediaQuery } from "@chakra-ui/react"
 import React from "react"
 import Button from "../common/Button"
+import HeaderNavMenu from "../common/HeaderNavMenu"
 import Image from "next/image"
 import { CARDS_DATA } from "./data"
 import img4 from '/public/assets/images/seller/Vector.png'
@@ -15,6 +16,7 @@ import google from 'public/assets/images/seller/google.png'
 import boiler from 'public/assets/images/seller/boiler.png'
 
 export default function Hero() {
+  const [breakpoint] = useMediaQuery("(max-width: 767px)");
   const [modal, setModal] = React.useState(false)
   const modalOpen = () => setModal(true)
   const [requestQuote, setRequestQuote] = React.useState(false);
@@ -130,15 +132,20 @@ export default function Hero() {
         </ModalContent>
       </Modal>
 
-      <Box w={'80%'}>
+      <Box w={breakpoint ? '100%' : '80%'}>
 
-        <Box bgColor={'#001930'} pt={5} borderTopLeftRadius={'30px'} pb={8}>
-          <Box bgColor={'#4AB2E1'} width={'60%'} py={2} borderRadius={'6px'} mx={'auto'} >
+        <Box bgColor={'#001930'} pt={5} borderTopLeftRadius={{ base: '0px', sm: '0px', md: '30px' }} pb={8}>
+          <HeaderNavMenu />
+          <Box bgColor={'#4AB2E1'} width={{ base: '90%', sm: '80%', md: '60%' }} py={2} borderRadius={'6px'} mx={'auto'} >
             <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'15px'} lineHeight={'150%'} textAlign={'center'} color={'white'}>✨ Thank your submission has been received, we will contact you soon ✨</Text>
           </Box>
           <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'32px'} lineHeight={'150%'} textAlign={'center'} color={'#EDF4FF'} mt={50}>New Boiler Quote</Text>
           <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} textAlign={'center'} color={'#4AB2E1'} my={6}>What Happens Next?</Text>
-          <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} textAlign={'center'} color={'#EDF4FF'} w={'75%'} mx={'auto'}>Someone from our team will give you a quick call from 0800 786765 to explain how the process works. Engineers interested in providing you with a free no-obligation quote will appear below.</Text>
+          <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} textAlign={'center'} color={'#EDF4FF'} w={{ base: '90%', sm: '85%', md: '75%' }} mx={'auto'}>Someone from our team will give you a quick call from 0800 786765 to explain how the process works. Engineers interested in providing you with a free no-obligation quote will appear below.</Text>
+          {breakpoint ? <Box width={'90%'} border={'1px solid rgba(255, 255, 255, 0.25)'} borderRadius={'6px'} display={'flex'} flexDirection={'row'} justifyContent={'space-between'} mx={'auto'} py={3} px={6} mt={10}>
+            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'16px'} lineHeight={'150%'} color={'#EDF4FF'}>Recommendation </Text>
+            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} color={'#EDF4FF'} opacity={0.5}>Find Nearby</Text>
+          </Box> : null}
           <Box display={'flex'} flexDirection={'row'} mt={50} justifyContent={'center'} gap={2}>
             <Box w={'13px'} h={'13px'} bgColor={'#5BC2E7'} borderRadius={'50%'}></Box>
             <Box w={'13px'} h={'13px'} bgColor={'#1F8BCB'} borderRadius={'50%'}></Box>
@@ -193,100 +200,99 @@ export default function Hero() {
 
           <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'32px'} lineHeight={'150%'} textAlign={'center'} color={'#005A8C'} mt={50}>While  You’re Waiting...</Text>
           <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'120%'} textAlign={'center'} color={'#12315B'} my={6} opacity={0.7}>Browse through our list of local Gas-Safe engineers in your area & invite them to quote</Text>
-        </Box>
-
-        <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} px={10}>
-          <Box>
-            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#12315B'}>5 Results</Text>
-          </Box>
-          <Box display={'flex'} flexDirection={'row'} gap={4}>
-            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#12315B'} opacity={0.5}>Sort By</Text>
-            <Text fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} textAlign={'center'} color={'#12315B'}>Reviews</Text>
-            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#12315B'}>Distance</Text>
-          </Box>
-        </Box>
-
-        <Box px={4} mt={3}>
-          <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
-            <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
-              <Box><Image src={logo} logo="logo" /></Box>
-              <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
-              <Box display={'flex'} flexDirection={'row'}>
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
-              </Box>
+          <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} px={10}>
+            <Box>
+              <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#12315B'}>5 Results</Text>
             </Box>
             <Box display={'flex'} flexDirection={'row'} gap={4}>
-              <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
-              <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#Quote005A8C'} bgColor={'#E5EEF3'} /></Box>
+              <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#12315B'} opacity={0.5}>Sort By</Text>
+              <Text fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} textAlign={'center'} color={'#12315B'}>Reviews</Text>
+              <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#12315B'}>Distance</Text>
             </Box>
-          </Box >
-          <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
-            <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
-              <Box><Image src={logo} logo="logo" /></Box>
-              <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
-              <Box display={'flex'} flexDirection={'row'}>
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
-              </Box>
-            </Box>
-            <Box display={'flex'} flexDirection={'row'} gap={4}>
-              <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
-              <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
-            </Box>
-          </Box >
-          <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
-            <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
-              <Box><Image src={logo} logo="logo" /></Box>
-              <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
-              <Box display={'flex'} flexDirection={'row'}>
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
-              </Box>
-            </Box>
-            <Box display={'flex'} flexDirection={'row'} gap={4}>
-              <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
-              <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
-            </Box>
-          </Box >
-          <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
-            <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
-              <Box><Image src={logo} logo="logo" /></Box>
-              <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
-              <Box display={'flex'} flexDirection={'row'}>
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Image src={star} alt="logo" />
-                <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
-              </Box>
-            </Box>
-            <Box display={'flex'} flexDirection={'row'} gap={4}>
-              <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
-              <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
-            </Box>
-          </Box >
-          <Box m={8} pb={10}>
-            <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'150%'} color={'#2B3950'} opacity={0.5}>4Better Boiler is operated by Pay Per Lead Ltd. Registered in England & Wales number 14088039. E&OEGas Safe Register is a registered trade mark of HSE and is used under license.</Text>
           </Box>
 
+          <Box px={8} mt={3}>
+            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
+              <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
+                <Box><Image src={logo} logo="logo" /></Box>
+                <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
+                <Box display={'flex'} flexDirection={'row'}>
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
+                </Box>
+              </Box>
+              <Box display={'flex'} flexDirection={'row'} gap={4}>
+                <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
+                <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#Quote005A8C'} bgColor={'#E5EEF3'} /></Box>
+              </Box>
+            </Box >
+            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
+              <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
+                <Box><Image src={logo} logo="logo" /></Box>
+                <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
+                <Box display={'flex'} flexDirection={'row'}>
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
+                </Box>
+              </Box>
+              <Box display={'flex'} flexDirection={'row'} gap={4}>
+                <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
+                <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
+              </Box>
+            </Box >
+            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
+              <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
+                <Box><Image src={logo} logo="logo" /></Box>
+                <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
+                <Box display={'flex'} flexDirection={'row'}>
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
+                </Box>
+              </Box>
+              <Box display={'flex'} flexDirection={'row'} gap={4}>
+                <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
+                <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
+              </Box>
+            </Box >
+            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
+              <Box display={'flex'} flexDirection={'row'} alignItems={'center'} gap={5}>
+                <Box><Image src={logo} logo="logo" /></Box>
+                <Box><Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'16px'} lineHeight={'120%'} color={'#005A8C'}>Bradford Company</Text></Box>
+                <Box display={'flex'} flexDirection={'row'}>
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'14px'} lineHeight={'140%'} color={'#111518'}>4.8</Text>
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Image src={star} alt="logo" />
+                  <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'140%'} color={'#111518'} opacity={0.6}>29 Reviews</Text>
+                </Box>
+              </Box>
+              <Box display={'flex'} flexDirection={'row'} gap={4}>
+                <Box><Button title="Request Quote" width={'192px'} height={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
+                <Box><Button title="View Profile" width={'132px'} height={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
+              </Box>
+            </Box >
+            <Box px={8} pb={10}>
+              <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'150%'} color={'#2B3950'} opacity={0.5}>4Better Boiler is operated by Pay Per Lead Ltd. Registered in England & Wales number 14088039. E&OEGas Safe Register is a registered trade mark of HSE and is used under license.</Text>
+            </Box>
+
+          </Box>
         </Box>
       </Box >
     </>
