@@ -1,5 +1,5 @@
 import { Box, Text, Divider, Modal, ModalOverlay, ModalContent, ModalBody, useMediaQuery } from "@chakra-ui/react"
-import React from "react"
+import React, { useEffect } from "react"
 import Button from "../common/Button"
 import HeaderNavMenu from "../common/HeaderNavMenu"
 import Image from "next/image"
@@ -14,8 +14,10 @@ import tick from 'public/assets/images/seller/tick.png'
 import yell from 'public/assets/images/seller/yell.png'
 import google from 'public/assets/images/seller/google.png'
 import boiler from 'public/assets/images/seller/boiler.png'
+import axios from "axios"
 
 export default function Hero() {
+  const [sellerData, setSellerData] = React.useState([])
   const [breakpoint] = useMediaQuery("(max-width: 767px)");
   const [modal, setModal] = React.useState(false)
   const modalOpen = () => setModal(true)
@@ -51,6 +53,40 @@ export default function Hero() {
       requestQuoteBtn: false,
     })
   }
+
+  async function fetchData() {
+    const queryData = `
+    query MyQuery {
+      sellers {
+        address
+        businessLogo
+        description
+        id
+        ratings
+      }
+    }
+    `;
+
+    const url = 'http://141.136.36.126/betterboiler/graphql';
+
+    try {
+      const response = await axios({
+        url: url,
+        method: 'post',
+        data: {
+          query: queryData
+        }
+      });
+      setSellerData(response.data.data.sellers)
+      console.log(response.data.data.sellers);
+    } catch (error) {
+      console.error('Error fetching data: ', error);
+    }
+  }
+  useEffect(() => {
+    fetchData()
+  }, []);
+
   return (
     <>
       <Modal isOpen={modal} onClose={modalClose} size={'xl'}>
@@ -299,7 +335,7 @@ export default function Hero() {
                   </Box>
                 </Box>
                   <Box display={'flex'} flexDirection={'row'} gap={4}>
-                    <Box><Button title="Request Quote" width={'110%'} minHeight={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} /></Box>
+                    <Box><Button title="Request Quote" width={'110%'} minHeight={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn(); fetchData() }} /></Box>
                     <Box><Button title="View Profile" width={'110%'} minHeight={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} /></Box>
                   </Box></>}
               {breakpoint ? <Box display={'flex'} flexDirection={'column'} mt={4} gap={2} pb={3}>
@@ -308,7 +344,7 @@ export default function Hero() {
               </Box> : null}
             </Box >
 
-            <Box display={breakpoint ? null : 'flex'} flexDirection={breakpoint ? null : 'row'} justifyContent={breakpoint ? null : 'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
+            {/* <Box display={breakpoint ? null : 'flex'} flexDirection={breakpoint ? null : 'row'} justifyContent={breakpoint ? null : 'space-between'} p={3} bgColor={'#FAFAFA'} borderRadius={'12px'} mb={3}>
 
               {breakpoint ?
                 <><Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
@@ -420,7 +456,7 @@ export default function Hero() {
                 <Button title="Request Quote" width={'100%'} minHeight={'48px'} color={'#005A8C'} bgColor={'#FFFFFF'} onClick={() => { modalOpen(); onRequestQuoteBtn() }} />
                 <Button title="View Profile" width={'100%'} minHeight={'48px'} color={'#005A8C'} bgColor={'#E5EEF3'} />
               </Box> : null}
-            </Box >
+            </Box > */}
 
             <Box px={8} pb={10}>
               <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={400} fontSize={'14px'} lineHeight={'150%'} color={'#2B3950'} opacity={0.5}>4Better Boiler is operated by Pay Per Lead Ltd. Registered in England & Wales number 14088039. E&OEGas Safe Register is a registered trade mark of HSE and is used under license.</Text>
@@ -432,3 +468,37 @@ export default function Hero() {
     </>
   )
 }
+
+// export async function getServerSideProps() {
+
+//   const query = `
+//   query MyQuery {
+//     sellers {
+//       address
+//       businessLogo
+//       description
+//       id
+//       ratings
+//     }
+//   }
+//   `;
+
+//   try {
+//     const response = await axios.post('http://141.136.36.126/betterboiler/graphql', {
+//       query: query,
+//     });
+
+//     const sellerData = response.data.data.seller;
+
+//     return {
+//       props: {
+//         sellerData,
+//       },
+//     };
+//   } catch (error) {
+//     console.error('Error fetching seller data:', error);
+//     return {
+//       props: {},
+//     };
+//   }
+// }
