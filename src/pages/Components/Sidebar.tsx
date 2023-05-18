@@ -3,16 +3,6 @@ import { useEffect, useState } from "react";
 
 import Link from "next/link";
 export default function Sidebar() {
-  const [windowsWidth, setWindowsWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowsWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
   const sidebar_data = [
     {
       id: 1,
@@ -72,10 +62,10 @@ export default function Sidebar() {
   });
   return (
     <Flex
-      display={windowsWidth >768 ? 'flex':'none'}
+      display={{base:'none', md:'flex'}}
       flex={2}
       direction="column"
-      h="100vh"
+      // h="100vh"
       bgColor={"#05294B"}
       pt="2rem"
       px="1vw"

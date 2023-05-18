@@ -1,66 +1,48 @@
 import { Box, Flex, Text, Image, Button } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-
 export default function Hero() {
-  const [windowsWidth, setWindowsWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowsWidth(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   const btn = (bgc: string) => {
     return (
       <Button
         border="none"
         borderRadius="50%"
-        w="13px"
-        h="13px"
+        size="xs"
         bgColor={bgc}
         cursor={"pointer"}
+        zIndex={0}
       ></Button>
     );
   };
   return (
     <Flex flex={8} direction="column">
       <Flex
-        flex="2"
+        flex="3"
         direction="column"
         alignItems={"center"}
         justifyContent={"space-between"}
-        gap="1rem"
+        gap="2rem"
         p="1rem"
+        paddingTop={{ sm: "6em", md: "1rem" }}
         bg="linear-gradient(180deg, #001930 0%, #13335F 100%)"
       >
         <Text
+          w="100%"
+          maxW={"665px"}
+          textAlign={"center"}
           color="white"
           bg="#4AB2E1"
           borderRadius={"6px"}
-          px="3rem"
+          px="0.5rem"
           py="0.5rem"
-          fontSize={"14px"}
+          fontSize={"12px"}
         >
-          ✨ Thank your submission has been received, we will contact you soon
-          ✨
+          {
+            "✨ Thank your submission has been received, we will contact you soon  ✨"
+          }
         </Text>
-        <Text
-          fontSize="2rem"
-          color="white"
-          textAlign={"center"}
-          // mt="4rem"
-          // mb="1rem"
-        >
+        <Text fontSize="2rem" color="white" textAlign={"center"}>
           New Boiler Quote
         </Text>
-        <Text
-          color="#4AB2E1"
-          fontWeight={600}
-          //  mb="0.7rem"
-        >
+        <Text color="#4AB2E1" fontWeight={600}>
           What Happens Next?
         </Text>
         <Text
@@ -82,11 +64,12 @@ export default function Hero() {
         </Flex>
       </Flex>
       <Flex
-        flex="5"
+        bgColor={"white"}
+        flex="2"
         direction="column"
         alignItems={"center"}
         justifyContent="space-between"
-        gap="1rem"
+        gap="3rem"
         px="5rem"
         py="1rem"
       >
@@ -102,7 +85,7 @@ export default function Hero() {
             invite them to quote
           </Text>
         </Box>
-        <Text justifySelf={"flex-end"} color="#2B3950" opacity="0.5">
+        <Text textAlign={"center"} mt="2.9rem" color="#2B3950" opacity="0.5">
           Better Boiler is operated by Pay Per Lead Ltd. Registered in England &
           Wales number 14088039. E&OEGas Safe Register is a registered trade
           mark of HSE and is used under license.
