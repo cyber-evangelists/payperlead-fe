@@ -6,15 +6,18 @@ import menu from '/public/assets/images/sideBar/menu.png'
 import DrawerSideBar from "./DrawerSideBar"
 
 export default function HeaderNavMenu() {
-  const [menuBtn, setMenu] = React.useState(false)
-  const [breakpoint] = useMediaQuery("(max-width: 767px)");
-  const onMenuBtn = () => setMenu(true)
+  const [drawer, setDrawer] = React.useState(false)
+  const [breakpoint] = useMediaQuery("(max-width: 767px)")
+
+  const onMenuBtnOpen = () => setDrawer(true)
+  const onMenuBtnClose = () => setDrawer(false)
+
   return (
     <>
-      <DrawerSideBar menuStatus={menuBtn} />
+      <DrawerSideBar drawerOpen={drawer} drawerClose={onMenuBtnClose} />
       {breakpoint ? <Box p={5} display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
         <Image src={logo} alt="logo" />
-        <Box cursor="pointer" onClick={onMenuBtn}>
+        <Box cursor="pointer" onClick={onMenuBtnOpen}>
           <Image src={menu} alt="menu" />
         </Box>
       </Box> : null}

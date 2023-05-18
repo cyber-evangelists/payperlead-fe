@@ -10,15 +10,11 @@ import profile from '/public/assets/images/sideBar/profile.png'
 import help from '/public/assets/images/sideBar/help.png'
 import add from '/public/assets/images/sideBar/add.png'
 
-export default function DrawerSideBar({ menuStatus = false }) {
+export default function DrawerSideBar({ drawerOpen, drawerClose }: any) {
   const drawerContentRef = useRef();
-  const [drawerClose, setDrawerClose] = React.useState(false)
-  const onCloseBtn = () => {
-    setDrawerClose(true)
-  }
   return (
     <>
-      <Drawer placement={'left'} onClose={onCloseBtn} isOpen={drawerClose === false ? menuStatus : false} finalFocusRef={drawerContentRef}>
+      <Drawer placement={'left'} onClose={drawerClose} isOpen={drawerOpen} finalFocusRef={drawerContentRef}>
         <DrawerOverlay />
         <DrawerContent bgColor={'#05294B'} borderRadius={'0px 25px 0px 0px'} ref={drawerContentRef}>
           <Box p={10}>

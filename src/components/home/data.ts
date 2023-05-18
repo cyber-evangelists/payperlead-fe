@@ -11,10 +11,10 @@ export const CARDS_DATA = [
         miles: '2 miles away',
         rating: 4.8,
         star: img5,
-        logo2: img3,
+        logo2: img2,
         logo2Name: 'Certified',
         cNumber: 28192,
-        logo3: img2,
+        logo3: img3,
         message: 'We extend a warm welcome to our trusted boiler company, committed to providing you with reliable heating solutions that keep you warm and comfortable throughout the year.'
     },
     {
@@ -24,10 +24,10 @@ export const CARDS_DATA = [
         miles: '2 miles away',
         rating: 4.8,
         star: img5,
-        logo2: img3,
+        logo2: img2,
         logo2Name: 'Certified',
         cNumber: 28192,
-        logo3: img2,
+        logo3: img3,
         message: 'We extend a warm welcome to our trusted boiler company, committed to providing you with reliable heating solutions that keep you warm and comfortable throughout the year.'
     },
     {
@@ -37,10 +37,10 @@ export const CARDS_DATA = [
         miles: '2 miles away',
         rating: 4.8,
         star: img5,
-        logo2: img3,
+        logo2: img2,
         logo2Name: 'Certified',
         cNumber: 28192,
-        logo3: img2,
+        logo3: img3,
         message: 'We extend a warm welcome to our trusted boiler company, committed to providing you with reliable heating solutions that keep you warm and comfortable throughout the year.'
     },
 ]
