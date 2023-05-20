@@ -1,11 +1,11 @@
 import Head from "next/head";
 import SideBar from "@/components/common/SideBar";
 import DrawerSideBar from "@/components/common/DrawerSideBar";
-import Hero from "@/components/home/Hero";
+import History from "@/components/history/History";
 
 import { Box, useMediaQuery } from "@chakra-ui/react";
 
-export default function Home() {
+export default function HistoryPage() {
   const [breakpoint] = useMediaQuery("(max-width: 767px)");
   return (
     <>
@@ -13,9 +13,9 @@ export default function Home() {
         <title>Better Boiler</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Box bgColor={'#05294B'} display={'flex'} flexDirection={'row'}>
+      <Box bgColor={'#05294B'} h={'100vh'} display={'flex'} flexDirection={'row'}>
         {breakpoint ? <DrawerSideBar /> : <SideBar />}
-        <Hero />
+        <History />
       </Box>
     </>
   );
