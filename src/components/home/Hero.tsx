@@ -1,4 +1,4 @@
-import { Box, Text, Divider, Modal, ModalOverlay, ModalContent, ModalBody, useMediaQuery } from "@chakra-ui/react"
+import { Box, Flex, Text, Divider, Modal, ModalOverlay, ModalContent, ModalBody, useMediaQuery } from "@chakra-ui/react"
 import React, { useEffect } from "react"
 import Button from "../common/Button"
 import HeaderNavMenu from "../common/HeaderNavMenu"
@@ -15,6 +15,7 @@ import yell from 'public/assets/images/seller/yell.png'
 import google from 'public/assets/images/seller/google.png'
 import boiler from 'public/assets/images/seller/boiler.png'
 import axios from "axios"
+import { ThreeDots } from "react-loader-spinner"
 
 export default function Hero() {
   const [sellerData, setSellerData] = React.useState([])
@@ -183,12 +184,16 @@ export default function Hero() {
             <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={500} fontSize={'16px'} lineHeight={'150%'} color={'#EDF4FF'}>Recommendation </Text>
             <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} color={'#EDF4FF'} opacity={0.5}>Find Nearby</Text>
           </Box> : null}
-          <Box display={'flex'} flexDirection={'row'} mt={50} justifyContent={'center'} gap={2}>
-            <Box w={'13px'} h={'13px'} bgColor={'#5BC2E7'} borderRadius={'50%'}></Box>
-            <Box w={'13px'} h={'13px'} bgColor={'#1F8BCB'} borderRadius={'50%'}></Box>
-            <Box w={'13px'} h={'13px'} bgColor={'#5BC2E7'} borderRadius={'50%'}></Box>
-            <Box w={'13px'} h={'13px'} bgColor={'#1F8BCB'} borderRadius={'50%'}></Box>
-          </Box>
+          <Flex justifyContent="center">
+            <ThreeDots
+              height="80"
+              width="80"
+              radius="9"
+              color="#5BC2E7"
+              ariaLabel="three-dots-loading"
+              visible={true}
+            />
+          </Flex>
 
           <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'32px'} lineHeight={'150%'} textAlign={'center'} color={'#EDF4FF'} mt={50}>Gas Boiler Request</Text>
           <Text fontFamily={'Inter'} fontStyle={'normal'} fontWeight={600} fontSize={'16px'} lineHeight={'150%'} textAlign={'center'} color={'#4AB2E1'} my={6}>We found 3 best engineers in your area</Text>

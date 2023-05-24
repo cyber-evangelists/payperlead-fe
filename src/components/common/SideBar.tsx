@@ -11,8 +11,8 @@ import add from '/public/assets/images/sideBar/add.png'
 export default function SideBar() {
   return (
     <>
-      <Box width={'20%'} p={10}>
-      <Box pl={3}><Image src={logo} alt="logo" /></Box>
+      <Box width={'20%'} p={10} bgColor="#05294B">
+        <Box pl={3}><Image src={logo} alt="logo" /></Box>
 
         <Box mt={12} display={'flex'} flexDirection={'column'}>
           <Link href={'/'}>
